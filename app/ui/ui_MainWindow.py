@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'MainWindowVJlDNW.ui'
+## Form generated from reading UI file 'MainWindowumJAuV.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.1
 ##
@@ -16,9 +16,9 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QApplication, QGridLayout, QMainWindow, QMenu,
-    QMenuBar, QSizePolicy, QStatusBar, QTextEdit,
-    QWidget)
+from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QMainWindow,
+    QMenu, QMenuBar, QPlainTextEdit, QSizePolicy,
+    QStatusBar, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -28,6 +28,7 @@ class Ui_MainWindow(object):
         font = QFont()
         font.setFamilies([u"Roboto"])
         MainWindow.setFont(font)
+        MainWindow.setStyleSheet(u"QMainWindow#MainWindow {background: white; }")
         self.action_new = QAction(MainWindow)
         self.action_new.setObjectName(u"action_new")
         self.action_new_window = QAction(MainWindow)
@@ -82,29 +83,43 @@ class Ui_MainWindow(object):
         self.action_linebreak = QAction(MainWindow)
         self.action_linebreak.setObjectName(u"action_linebreak")
         self.action_linebreak.setCheckable(True)
+        self.action_settings = QAction(MainWindow)
+        self.action_settings.setObjectName(u"action_settings")
+        self.action_about = QAction(MainWindow)
+        self.action_about.setObjectName(u"action_about")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout = QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.textEdit = QTextEdit(self.centralwidget)
-        self.textEdit.setObjectName(u"textEdit")
+        self.gridLayout.setContentsMargins(-1, -1, -1, 0)
+        self.editor = QPlainTextEdit(self.centralwidget)
+        self.editor.setObjectName(u"editor")
+        font1 = QFont()
+        font1.setFamilies([u"Roboto"])
+        font1.setPointSize(12)
+        self.editor.setFont(font1)
+        self.editor.setFrameShape(QFrame.NoFrame)
 
-        self.gridLayout.addWidget(self.textEdit, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.editor, 0, 0, 1, 1)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 793, 21))
+        self.menubar.setGeometry(QRect(0, 0, 793, 22))
         self.file = QMenu(self.menubar)
         self.file.setObjectName(u"file")
+        self.file.setTearOffEnabled(True)
         self.edit = QMenu(self.menubar)
         self.edit.setObjectName(u"edit")
+        self.edit.setTearOffEnabled(True)
         self.view = QMenu(self.menubar)
         self.view.setObjectName(u"view")
+        self.view.setTearOffEnabled(True)
         self.menuZoom = QMenu(self.view)
         self.menuZoom.setObjectName(u"menuZoom")
-        self.settings = QMenu(self.menubar)
-        self.settings.setObjectName(u"settings")
+        self.menuZoom.setTearOffEnabled(True)
+        self.help = QMenu(self.menubar)
+        self.help.setObjectName(u"help")
         MainWindow.setMenuBar(self.menubar)
         self.status_bar = QStatusBar(MainWindow)
         self.status_bar.setObjectName(u"status_bar")
@@ -113,7 +128,7 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.file.menuAction())
         self.menubar.addAction(self.edit.menuAction())
         self.menubar.addAction(self.view.menuAction())
-        self.menubar.addAction(self.settings.menuAction())
+        self.menubar.addAction(self.help.menuAction())
         self.file.addAction(self.action_new)
         self.file.addAction(self.action_new_window)
         self.file.addAction(self.action_open)
@@ -147,6 +162,8 @@ class Ui_MainWindow(object):
         self.menuZoom.addAction(self.action_zoom_in)
         self.menuZoom.addAction(self.action_zoom_out)
         self.menuZoom.addAction(self.action_restore_zoom)
+        self.help.addAction(self.action_settings)
+        self.help.addAction(self.action_about)
 
         self.retranslateUi(MainWindow)
 
@@ -238,10 +255,12 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(shortcut)
         self.action_status_bar.setText(QCoreApplication.translate("MainWindow", u"Barra de estado", None))
         self.action_linebreak.setText(QCoreApplication.translate("MainWindow", u"Ajuste de l\u00ednea", None))
+        self.action_settings.setText(QCoreApplication.translate("MainWindow", u"Configuraci\u00f3n", None))
+        self.action_about.setText(QCoreApplication.translate("MainWindow", u"Acerca de", None))
         self.file.setTitle(QCoreApplication.translate("MainWindow", u"Archivo", None))
         self.edit.setTitle(QCoreApplication.translate("MainWindow", u"Editar", None))
         self.view.setTitle(QCoreApplication.translate("MainWindow", u"Ver", None))
         self.menuZoom.setTitle(QCoreApplication.translate("MainWindow", u"Zoom", None))
-        self.settings.setTitle(QCoreApplication.translate("MainWindow", u"Configuraci\u00f3n", None))
+        self.help.setTitle(QCoreApplication.translate("MainWindow", u"Ayuda", None))
     # retranslateUi
 

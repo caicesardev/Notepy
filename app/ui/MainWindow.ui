@@ -18,10 +18,26 @@
   <property name="windowTitle">
    <string>Notepy</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow#MainWindow {background: white; }</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
     <item row="0" column="0">
-     <widget class="QTextEdit" name="textEdit"/>
+     <widget class="QPlainTextEdit" name="editor">
+      <property name="font">
+       <font>
+        <family>Roboto</family>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -31,10 +47,13 @@
      <x>0</x>
      <y>0</y>
      <width>793</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="file">
+    <property name="tearOffEnabled">
+     <bool>true</bool>
+    </property>
     <property name="title">
      <string>Archivo</string>
     </property>
@@ -50,6 +69,9 @@
     <addaction name="action_exit"/>
    </widget>
    <widget class="QMenu" name="edit">
+    <property name="tearOffEnabled">
+     <bool>true</bool>
+    </property>
     <property name="title">
      <string>Editar</string>
     </property>
@@ -72,10 +94,16 @@
     <addaction name="action_font"/>
    </widget>
    <widget class="QMenu" name="view">
+    <property name="tearOffEnabled">
+     <bool>true</bool>
+    </property>
     <property name="title">
      <string>Ver</string>
     </property>
     <widget class="QMenu" name="menuZoom">
+     <property name="tearOffEnabled">
+      <bool>true</bool>
+     </property>
      <property name="title">
       <string>Zoom</string>
      </property>
@@ -87,15 +115,17 @@
     <addaction name="action_status_bar"/>
     <addaction name="action_linebreak"/>
    </widget>
-   <widget class="QMenu" name="settings">
+   <widget class="QMenu" name="help">
     <property name="title">
-     <string>Configuración</string>
+     <string>Ayuda</string>
     </property>
+    <addaction name="action_settings"/>
+    <addaction name="action_about"/>
    </widget>
    <addaction name="file"/>
    <addaction name="edit"/>
    <addaction name="view"/>
-   <addaction name="settings"/>
+   <addaction name="help"/>
   </widget>
   <widget class="QStatusBar" name="status_bar"/>
   <action name="action_new">
@@ -289,6 +319,16 @@
    </property>
    <property name="text">
     <string>Ajuste de línea</string>
+   </property>
+  </action>
+  <action name="action_settings">
+   <property name="text">
+    <string>Configuración</string>
+   </property>
+  </action>
+  <action name="action_about">
+   <property name="text">
+    <string>Acerca de</string>
    </property>
   </action>
  </widget>
