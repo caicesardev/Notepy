@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>793</width>
-    <height>600</height>
+    <width>800</width>
+    <height>620</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>250</width>
+    <height>125</height>
+   </size>
   </property>
   <property name="font">
    <font>
@@ -37,6 +43,9 @@
       <property name="frameShape">
        <enum>QFrame::NoFrame</enum>
       </property>
+      <property name="lineWrapMode">
+       <enum>QPlainTextEdit::NoWrap</enum>
+      </property>
      </widget>
     </item>
    </layout>
@@ -46,7 +55,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>793</width>
+     <width>800</width>
      <height>22</height>
     </rect>
    </property>
@@ -83,8 +92,8 @@
     <addaction name="action_delete"/>
     <addaction name="separator"/>
     <addaction name="action_search"/>
-    <addaction name="action_search_next"/>
-    <addaction name="action_search_before"/>
+    <addaction name="action_find_next"/>
+    <addaction name="action_find_previous"/>
     <addaction name="action_replace"/>
     <addaction name="action_goto"/>
     <addaction name="separator"/>
@@ -113,7 +122,7 @@
     </widget>
     <addaction name="menuZoom"/>
     <addaction name="action_status_bar"/>
-    <addaction name="action_linebreak"/>
+    <addaction name="action_word_wrap"/>
    </widget>
    <widget class="QMenu" name="help">
     <property name="title">
@@ -121,13 +130,18 @@
     </property>
     <addaction name="action_settings"/>
     <addaction name="action_about"/>
+    <addaction name="action_about_qt"/>
    </widget>
    <addaction name="file"/>
    <addaction name="edit"/>
    <addaction name="view"/>
    <addaction name="help"/>
   </widget>
-  <widget class="QStatusBar" name="status_bar"/>
+  <widget class="QStatusBar" name="status_bar">
+   <property name="styleSheet">
+    <string notr="true">QStatusBar { background: #cccccc; }</string>
+   </property>
+  </widget>
   <action name="action_new">
    <property name="text">
     <string>Nuevo</string>
@@ -149,7 +163,7 @@
     <string>Abrir</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+A</string>
+    <string>Ctrl+O</string>
    </property>
   </action>
   <action name="action_save">
@@ -234,7 +248,7 @@
     <string>Ctrl+B</string>
    </property>
   </action>
-  <action name="action_search_next">
+  <action name="action_find_next">
    <property name="text">
     <string>Buscar siguiente</string>
    </property>
@@ -242,7 +256,7 @@
     <string>F3</string>
    </property>
   </action>
-  <action name="action_search_before">
+  <action name="action_find_previous">
    <property name="text">
     <string>Buscar anterior</string>
    </property>
@@ -309,11 +323,14 @@
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Barra de estado</string>
    </property>
   </action>
-  <action name="action_linebreak">
+  <action name="action_word_wrap">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -329,6 +346,11 @@
   <action name="action_about">
    <property name="text">
     <string>Acerca de</string>
+   </property>
+  </action>
+  <action name="action_about_qt">
+   <property name="text">
+    <string>Acerca de Qt</string>
    </property>
   </action>
  </widget>
