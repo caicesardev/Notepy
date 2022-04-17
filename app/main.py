@@ -104,8 +104,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def on_changes(self):
         # Default name.
         if self.path == '':
-            self.setWindowTitle("*Sin Título: Notepy")
-            self.file_saved = False
+            # If the user deleted all changes there's nothing to save.
+            if self.editor.textCursor().position() == 0:
+                self.setWindowTitle("Sin Título: Notepy")
+                self.file_saved = True
+            else:
+                self.setWindowTitle("*Sin Título: Notepy")
+                self.file_saved = False
         else:
             # If you have just opened a file dont put the asterisk.
             if self.file_opened:
