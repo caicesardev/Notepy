@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'MainWindowqLvGPX.ui'
+## Form generated from reading UI file 'MainWindowXfhZHi.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.1
 ##
@@ -110,7 +110,10 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 800, 22))
+        self.menubar.setGeometry(QRect(0, 0, 800, 24))
+        font2 = QFont()
+        font2.setPointSize(10)
+        self.menubar.setFont(font2)
         self.file = QMenu(self.menubar)
         self.file.setObjectName(u"file")
         self.file.setTearOffEnabled(True)

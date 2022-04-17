@@ -20,6 +20,7 @@ from PySide6.QtWidgets import (
     QLabel,
     QWidget,
 )
+from PySide6.QtPrintSupport import QPrinter, QPrintDialog, QPageSetupDialog
 
 
 __version__ = "1.0.0"
@@ -195,10 +196,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             print(e)
 
     def page_settings(self):
-        pass
+        printer = QPrinter(QPrinter.HighResolution)
+        dialog = QPageSetupDialog(printer)
+
+        if dialog.exec() == QPrintDialog.Accepted:
+            return
 
     def print_file(self):
-        pass
+        printer = QPrinter(QPrinter.HighResolution)
+        dialog = QPrintDialog(printer)
+
+        if dialog.exec() == QPrintDialog.Accepted:
+            self.editor.print_(printer)
 
     def closeEvent(self, event):
         if self.file_saved == False:
