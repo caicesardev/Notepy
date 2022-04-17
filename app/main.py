@@ -16,7 +16,9 @@ from PySide6.QtWidgets import (
     QMainWindow,
     QTextEdit,
     QFileDialog,
-    QMessageBox
+    QMessageBox,
+    QLabel,
+    QWidget,
 )
 
 
@@ -28,7 +30,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
 
-        self.file_saved = False
+        self.file_saved = True  # For the default file.
         self.file_opened = False
         self.path = ''
 
@@ -52,7 +54,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.action_save_as.triggered.connect(self.save_as)
         self.action_page_settings.triggered.connect(self.page_settings)
         self.action_print.triggered.connect(self.print_file)
-        self.action_exit.triggered.connect(self.closeEvent)
+        self.action_exit.triggered.connect(self.close)
 
         self.action_search.triggered.connect(self.find)
         self.action_find_next.triggered.connect(self.find_next)
@@ -73,37 +75,93 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.editor.textChanged.connect(self.on_changes)
 
+        self.encoding_label = QLabel("UTF-8")
+        self.os_label = QLabel("Windows (CLRF)")
+        # print(repr(f.newlines)) --> To detect if newlines are from windwos \r\f or Unix
+        self.zoom_percent = QLabel("100%")
+        self.cur_location = QLabel("Ln 1, Col 1")
+
+        self.separator = QWidget()
+        self.separator.setFixedWidth(50)
+        self.separator.setStyleSheet("border-left: 1px solid grey")
+
+        self.separator2 = QWidget()
+        self.separator2.setFixedWidth(50)
+        self.separator2.setStyleSheet("border-left: 1px solid grey")
+
+        self.separator3 = QWidget()
+        self.separator3.setFixedWidth(50)
+        self.separator3.setStyleSheet("border-left: 1px solid grey")
+
+        self.status_bar.addPermanentWidget(self.cur_location)
+        self.status_bar.addPermanentWidget(self.separator)
+        self.status_bar.addPermanentWidget(self.zoom_percent)
+        self.status_bar.addPermanentWidget(self.separator2)
+        self.status_bar.addPermanentWidget(self.os_label)
+        self.status_bar.addPermanentWidget(self.separator3)
+        self.status_bar.addPermanentWidget(self.encoding_label)
+
     def on_changes(self):
+        # Default name.
         if self.path == '':
             self.setWindowTitle("*Sin Título: Notepy")
+            self.file_saved = False
         else:
-            if not self.file_opened:
+            # If you have just opened a file dont put the asterisk.
+            if self.file_opened:
+                # Reset variable
+                self.file_opened = False
+            else:
                 self.setWindowTitle(f"*{os.path.basename(self.path)}: Notepy")
+                self.file_saved = False
 
     #### File ####
 
     def new_file(self):
-        pass
+        if self.file_saved == False:
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            if self.path == "":
+                msg.setText("¿Quieres guardar los cambios de Sin título?")
+            else:
+                msg.setText(f"¿Quieres guardar los cambios de {self.path}?")
+            msg.setWindowTitle("Notepy | Guardar cambios")
+            msg.setStandardButtons(
+                QMessageBox.Save | QMessageBox.Discard | QMessageBox.Cancel)
+
+            ret = msg.exec()
+
+            if ret == QMessageBox.Save:
+                self.save()
+            if ret == QMessageBox.Discard:
+                self.editor.clear()
+                self.setWindowTitle("Sin Título: Notepy")
+                self.path = ""
+                self.file_saved = True
+            if ret == QMessageBox.Cancel:
+                return
+        else:
+            self.editor.clear()
+            self.setWindowTitle("Sin Título: Notepy")
+            self.path = ""
+            self.file_saved = True
 
     def new_window(self):
         subprocess.Popen([sys.executable, "./main.py"])
         os.system('cls' if os.name == 'nt' else 'clear')
 
     def open_file(self):
-        self.path = QFileDialog.getOpenFileName(
+        self.path, _ = QFileDialog.getOpenFileName(
             self, "Abrir", "", "Documentos de texto (*.txt);;Todos los archivos (*.*)")
-        self.fname = self.path[0]
         if self.path == '':
             return
         try:
-            with open(self.fname, 'r') as f:
+            with open(self.path, 'r') as f:
                 content = f.read()
-                self.setWindowTitle(f"{os.path.basename(self.fname)}: Notepy")
-                self.editor.setPlainText(content)
                 self.file_opened = True
+                self.setWindowTitle(f"{os.path.basename(self.path)}: Notepy")
+                self.editor.setPlainText(content)
         except Exception as e:
-            self.file_saved = False
-            self.file_opened = False
             print(e)
 
     def save(self):
@@ -116,7 +174,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.setWindowTitle(f"{os.path.basename(self.path)}: Notepy")
                 self.file_saved = True
         except Exception as e:
-            self.file_saved = False
             print(e)
 
     def save_as(self):
@@ -129,9 +186,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             with open(self.path, 'w') as f:
                 f.write(text)
                 self.setWindowTitle(f"{os.path.basename(self.path)}: Notepy")
-                self.file_saved = True
         except Exception as e:
-            self.file_saved = False
             print(e)
 
     def page_settings(self):
@@ -141,25 +196,29 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         pass
 
     def closeEvent(self, event):
-        if not self.file_saved:
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Information)
-            if self.path == "":
-                msg.setText("¿Quieres guardar los cambiso de Sin título?")
-            else:
-                msg.setText(f"¿Quieres guardar los cambios de {self.path}?")
-            msg.setInformativeText("This is additional information")
-            msg.setWindowTitle("MessageBox demo")
-            msg.setDetailedText("The details are as follows:")
-            msg.setStandardButtons(
-                QMessageBox.Save | QMessageBox.No | QMessageBox.Cancel)
+        if self.file_saved == False:
+            self.show_save_message(event)
 
-            if msg == QMessageBox.Save:
-                print("Save")
-            if msg == QMessageBox.No:
-                print("Don't save")
-            if msg == QMessageBox.Cancel:
-                print("Cancel")
+    def show_save_message(self, event):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information)
+        if self.path == "":
+            msg.setText("¿Quieres guardar los cambios de Sin título?")
+        else:
+            msg.setText(f"¿Quieres guardar los cambios de {self.path}?")
+        msg.setWindowTitle("Notepy | Guardar cambios")
+        msg.setStandardButtons(
+            QMessageBox.Save | QMessageBox.Discard | QMessageBox.Cancel)
+
+        ret = msg.exec()
+
+        if ret == QMessageBox.Save:
+            self.save()
+            event.ignore()
+        if ret == QMessageBox.Discard:
+            self.close()
+        if ret == QMessageBox.Cancel:
+            event.ignore()
 
     #### File ####
 
