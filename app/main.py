@@ -112,6 +112,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             else:
                 self.setWindowTitle("*Sin Título: Notepy")
                 self.file_saved = False
+                self.cur_location.setText(
+                    f"Ln {self.editor.textCursor().blockNumber() + 1}, Col {self.editor.textCursor().columnNumber() + 1}")
         else:
             # If you have just opened a file dont put the asterisk.
             if self.file_opened:
@@ -144,6 +146,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.setWindowTitle("Sin Título: Notepy")
                 self.path = ""
                 self.file_saved = True
+                self.cur_location.setText("Ln 1, Col 1")
+
             if ret == QMessageBox.Cancel:
                 return
         else:
@@ -151,6 +155,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.setWindowTitle("Sin Título: Notepy")
             self.path = ""
             self.file_saved = True
+            self.cur_location.setText("Ln 1, Col 1")
 
     def new_window(self):
         subprocess.Popen([sys.executable, "./main.py"])
@@ -275,8 +280,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def wheelEvent(self, event):
         if (event.modifiers() & Qt.ControlModifier):
             self.zoom(event.angleDelta().y())
-        else:
-            QTextEdit.wheelEvent(self, event)
 
     def restore_zoom(self):
         pass
