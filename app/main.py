@@ -4,6 +4,7 @@ import subprocess
 
 from ui.ui_MainWindow import Ui_MainWindow
 from settings import Settings
+from datetime import datetime
 from PySide6.QtGui import QKeySequence
 from PySide6.QtCore import (
     Qt,
@@ -113,7 +114,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.setWindowTitle("*Sin Título: Notepy")
                 self.file_saved = False
                 self.cur_location.setText(
-                    f"Ln {self.editor.textCursor().blockNumber() + 1}, Col {self.editor.textCursor().columnNumber() + 1}")
+                    f"Ln {self.editor.textCursor().blockNumber() + 1}, Col {self.editor.textCursor().columnNumber()}")
         else:
             # If you have just opened a file dont put the asterisk.
             if self.file_opened:
@@ -162,18 +163,55 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         os.system('cls' if os.name == 'nt' else 'clear')
 
     def open_file(self):
-        self.path, _ = QFileDialog.getOpenFileName(
-            self, "Abrir", "", "Documentos de texto (*.txt);;Todos los archivos (*.*)")
-        if self.path == '':
-            return
-        try:
-            with open(self.path, 'r') as f:
-                content = f.read()
-                self.file_opened = True
-                self.setWindowTitle(f"{os.path.basename(self.path)}: Notepy")
-                self.editor.setPlainText(content)
-        except Exception as e:
-            print(e)
+        if self.file_saved == False:
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Information)
+            if self.path == "":
+                msg.setText("¿Quieres guardar los cambios de Sin título?")
+            else:
+                msg.setText(f"¿Quieres guardar los cambios de {self.path}?")
+            msg.setWindowTitle("Notepy | Guardar cambios")
+            msg.setStandardButtons(
+                QMessageBox.Save | QMessageBox.Discard | QMessageBox.Cancel)
+
+            ret = msg.exec()
+
+            if ret == QMessageBox.Save:
+                self.save()
+            if ret == QMessageBox.Discard:
+                self.path, _ = QFileDialog.getOpenFileName(
+                    self, "Abrir", "", "Documentos de texto (*.txt);;Todos los archivos (*.*)")
+                if self.path == '':
+                    return
+                try:
+                    with open(self.path, 'r') as f:
+                        content = f.read()
+                        self.file_opened = True
+                        self.file_saved = True
+                        self.setWindowTitle(
+                            f"{os.path.basename(self.path)}: Notepy")
+                        self.editor.setPlainText(content)
+                        self.cur_location.setText("Ln 1, Col 1")
+                except Exception as e:
+                    print(e)
+            if ret == QMessageBox.Cancel:
+                return
+        else:
+            self.path, _ = QFileDialog.getOpenFileName(
+                self, "Abrir", "", "Documentos de texto (*.txt);;Todos los archivos (*.*)")
+            if self.path == '':
+                return
+            try:
+                with open(self.path, 'r') as f:
+                    content = f.read()
+                    self.file_opened = True
+                    self.file_saved = True
+                    self.setWindowTitle(
+                        f"{os.path.basename(self.path)}: Notepy")
+                    self.editor.setPlainText(content)
+                    self.cur_location.setText("Ln 1, Col 1")
+            except Exception as e:
+                print(e)
 
     def save(self):
         if self.path == '':
@@ -259,7 +297,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         pass
 
     def insert_datetime(self):
-        pass
+        cursor = self.editor.textCursor()
+        cursor.insertText(str(datetime.now().strftime("%H:%M %d/%m/%Y")))
 
     #### Edit ####
 
