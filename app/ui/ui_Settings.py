@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'SettingsdWRAqA.ui'
+## Form generated from reading UI file 'SettingsCrmSit.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.1
 ##
@@ -20,23 +20,23 @@ from PySide6.QtWidgets import (QAbstractButton, QApplication, QComboBox, QDialog
     QHBoxLayout, QLabel, QRadioButton, QSizePolicy,
     QVBoxLayout)
 
-class Ui_Dialog(object):
-    def setupUi(self, Dialog):
-        if not Dialog.objectName():
-            Dialog.setObjectName(u"Dialog")
-        Dialog.resize(420, 285)
-        Dialog.setMinimumSize(QSize(420, 285))
-        Dialog.setMaximumSize(QSize(420, 285))
-        Dialog.setStyleSheet(u"QDialog { background: white; }")
-        self.verticalLayout = QVBoxLayout(Dialog)
+class Ui_SettingsDialog(object):
+    def setupUi(self, SettingsDialog):
+        if not SettingsDialog.objectName():
+            SettingsDialog.setObjectName(u"SettingsDialog")
+        SettingsDialog.resize(420, 285)
+        SettingsDialog.setMinimumSize(QSize(420, 285))
+        SettingsDialog.setMaximumSize(QSize(420, 285))
+        SettingsDialog.setStyleSheet(u"QDialog { background: white; }")
+        self.verticalLayout = QVBoxLayout(SettingsDialog)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.title = QLabel(Dialog)
+        self.title = QLabel(SettingsDialog)
         self.title.setObjectName(u"title")
         self.title.setMaximumSize(QSize(16777215, 120))
 
         self.verticalLayout.addWidget(self.title)
 
-        self.theme_group_box = QGroupBox(Dialog)
+        self.theme_group_box = QGroupBox(SettingsDialog)
         self.theme_group_box.setObjectName(u"theme_group_box")
         self.theme_group_box.setMaximumSize(QSize(16777215, 70))
         self.theme_group_box.setStyleSheet(u"b")
@@ -61,7 +61,7 @@ class Ui_Dialog(object):
 
         self.verticalLayout.addWidget(self.theme_group_box)
 
-        self.font_group_box = QGroupBox(Dialog)
+        self.font_group_box = QGroupBox(SettingsDialog)
         self.font_group_box.setObjectName(u"font_group_box")
         self.formLayout = QFormLayout(self.font_group_box)
         self.formLayout.setObjectName(u"formLayout")
@@ -115,7 +115,7 @@ class Ui_Dialog(object):
 
         self.verticalLayout.addWidget(self.font_group_box)
 
-        self.button_box = QDialogButtonBox(Dialog)
+        self.button_box = QDialogButtonBox(SettingsDialog)
         self.button_box.setObjectName(u"button_box")
         self.button_box.setOrientation(Qt.Horizontal)
         self.button_box.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
@@ -123,42 +123,42 @@ class Ui_Dialog(object):
         self.verticalLayout.addWidget(self.button_box)
 
 
-        self.retranslateUi(Dialog)
-        self.button_box.accepted.connect(Dialog.accept)
-        self.button_box.rejected.connect(Dialog.reject)
+        self.retranslateUi(SettingsDialog)
+        self.button_box.accepted.connect(SettingsDialog.accept)
+        self.button_box.rejected.connect(SettingsDialog.reject)
 
-        QMetaObject.connectSlotsByName(Dialog)
+        QMetaObject.connectSlotsByName(SettingsDialog)
     # setupUi
 
-    def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Configuraci\u00f3n", None))
-        self.title.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p><span style=\" font-size:18pt; font-weight:700; color:#000000;\">Configuraci\u00f3n</span></p></body></html>", None))
-        self.theme_group_box.setTitle(QCoreApplication.translate("Dialog", u"Tema de la aplicaci\u00f3n", None))
-        self.light_radio_button.setText(QCoreApplication.translate("Dialog", u"Claro", None))
-        self.dark_radio_button.setText(QCoreApplication.translate("Dialog", u"Oscuro", None))
-        self.system_radio_button.setText(QCoreApplication.translate("Dialog", u"Usar la configuraci\u00f3n del sistema", None))
-        self.font_group_box.setTitle(QCoreApplication.translate("Dialog", u"Fuente", None))
-        self.family_label.setText(QCoreApplication.translate("Dialog", u"Familia", None))
-        self.style_label.setText(QCoreApplication.translate("Dialog", u"Estilo", None))
-        self.style_combo_box.setItemText(0, QCoreApplication.translate("Dialog", u"Normal", None))
+    def retranslateUi(self, SettingsDialog):
+        SettingsDialog.setWindowTitle(QCoreApplication.translate("SettingsDialog", u"Configuraci\u00f3n", None))
+        self.title.setText(QCoreApplication.translate("SettingsDialog", u"<html><head/><body><p><span style=\" font-size:18pt; font-weight:700; color:#000000;\">Configuraci\u00f3n</span></p></body></html>", None))
+        self.theme_group_box.setTitle(QCoreApplication.translate("SettingsDialog", u"Tema de la aplicaci\u00f3n", None))
+        self.light_radio_button.setText(QCoreApplication.translate("SettingsDialog", u"Claro", None))
+        self.dark_radio_button.setText(QCoreApplication.translate("SettingsDialog", u"Oscuro", None))
+        self.system_radio_button.setText(QCoreApplication.translate("SettingsDialog", u"Usar la configuraci\u00f3n del sistema", None))
+        self.font_group_box.setTitle(QCoreApplication.translate("SettingsDialog", u"Fuente", None))
+        self.family_label.setText(QCoreApplication.translate("SettingsDialog", u"Familia", None))
+        self.style_label.setText(QCoreApplication.translate("SettingsDialog", u"Estilo", None))
+        self.style_combo_box.setItemText(0, QCoreApplication.translate("SettingsDialog", u"Normal", None))
 
-        self.size_label.setText(QCoreApplication.translate("Dialog", u"Tama\u00f1o", None))
-        self.size_combo_box.setItemText(0, QCoreApplication.translate("Dialog", u"8", None))
-        self.size_combo_box.setItemText(1, QCoreApplication.translate("Dialog", u"9", None))
-        self.size_combo_box.setItemText(2, QCoreApplication.translate("Dialog", u"10", None))
-        self.size_combo_box.setItemText(3, QCoreApplication.translate("Dialog", u"11", None))
-        self.size_combo_box.setItemText(4, QCoreApplication.translate("Dialog", u"12", None))
-        self.size_combo_box.setItemText(5, QCoreApplication.translate("Dialog", u"14", None))
-        self.size_combo_box.setItemText(6, QCoreApplication.translate("Dialog", u"16", None))
-        self.size_combo_box.setItemText(7, QCoreApplication.translate("Dialog", u"18", None))
-        self.size_combo_box.setItemText(8, QCoreApplication.translate("Dialog", u"20", None))
-        self.size_combo_box.setItemText(9, QCoreApplication.translate("Dialog", u"22", None))
-        self.size_combo_box.setItemText(10, QCoreApplication.translate("Dialog", u"24", None))
-        self.size_combo_box.setItemText(11, QCoreApplication.translate("Dialog", u"26", None))
-        self.size_combo_box.setItemText(12, QCoreApplication.translate("Dialog", u"28", None))
-        self.size_combo_box.setItemText(13, QCoreApplication.translate("Dialog", u"36", None))
-        self.size_combo_box.setItemText(14, QCoreApplication.translate("Dialog", u"48", None))
-        self.size_combo_box.setItemText(15, QCoreApplication.translate("Dialog", u"72", None))
+        self.size_label.setText(QCoreApplication.translate("SettingsDialog", u"Tama\u00f1o", None))
+        self.size_combo_box.setItemText(0, QCoreApplication.translate("SettingsDialog", u"8", None))
+        self.size_combo_box.setItemText(1, QCoreApplication.translate("SettingsDialog", u"9", None))
+        self.size_combo_box.setItemText(2, QCoreApplication.translate("SettingsDialog", u"10", None))
+        self.size_combo_box.setItemText(3, QCoreApplication.translate("SettingsDialog", u"11", None))
+        self.size_combo_box.setItemText(4, QCoreApplication.translate("SettingsDialog", u"12", None))
+        self.size_combo_box.setItemText(5, QCoreApplication.translate("SettingsDialog", u"14", None))
+        self.size_combo_box.setItemText(6, QCoreApplication.translate("SettingsDialog", u"16", None))
+        self.size_combo_box.setItemText(7, QCoreApplication.translate("SettingsDialog", u"18", None))
+        self.size_combo_box.setItemText(8, QCoreApplication.translate("SettingsDialog", u"20", None))
+        self.size_combo_box.setItemText(9, QCoreApplication.translate("SettingsDialog", u"22", None))
+        self.size_combo_box.setItemText(10, QCoreApplication.translate("SettingsDialog", u"24", None))
+        self.size_combo_box.setItemText(11, QCoreApplication.translate("SettingsDialog", u"26", None))
+        self.size_combo_box.setItemText(12, QCoreApplication.translate("SettingsDialog", u"28", None))
+        self.size_combo_box.setItemText(13, QCoreApplication.translate("SettingsDialog", u"36", None))
+        self.size_combo_box.setItemText(14, QCoreApplication.translate("SettingsDialog", u"48", None))
+        self.size_combo_box.setItemText(15, QCoreApplication.translate("SettingsDialog", u"72", None))
 
     # retranslateUi
 

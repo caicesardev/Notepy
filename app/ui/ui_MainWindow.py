@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'MainWindowXfhZHi.ui'
+## Form generated from reading UI file 'MainWindowFsPIrv.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.1
 ##
@@ -91,6 +91,8 @@ class Ui_MainWindow(object):
         self.action_about.setObjectName(u"action_about")
         self.action_about_qt = QAction(MainWindow)
         self.action_about_qt.setObjectName(u"action_about_qt")
+        self.action_redo = QAction(MainWindow)
+        self.action_redo.setObjectName(u"action_redo")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.gridLayout = QGridLayout(self.centralwidget)
@@ -149,11 +151,11 @@ class Ui_MainWindow(object):
         self.file.addSeparator()
         self.file.addAction(self.action_exit)
         self.edit.addAction(self.action_undo)
+        self.edit.addAction(self.action_redo)
         self.edit.addSeparator()
         self.edit.addAction(self.action_cut)
         self.edit.addAction(self.action_copy)
         self.edit.addAction(self.action_paste)
-        self.edit.addAction(self.action_delete)
         self.edit.addSeparator()
         self.edit.addAction(self.action_search)
         self.edit.addAction(self.action_find_next)
@@ -208,6 +210,9 @@ class Ui_MainWindow(object):
         self.action_print.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+P", None))
 #endif // QT_CONFIG(shortcut)
         self.action_exit.setText(QCoreApplication.translate("MainWindow", u"Salir", None))
+#if QT_CONFIG(shortcut)
+        self.action_exit.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+W", None))
+#endif // QT_CONFIG(shortcut)
         self.action_undo.setText(QCoreApplication.translate("MainWindow", u"Deshacer", None))
 #if QT_CONFIG(shortcut)
         self.action_undo.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Z", None))
@@ -268,6 +273,10 @@ class Ui_MainWindow(object):
         self.action_settings.setText(QCoreApplication.translate("MainWindow", u"Configuraci\u00f3n", None))
         self.action_about.setText(QCoreApplication.translate("MainWindow", u"Acerca de", None))
         self.action_about_qt.setText(QCoreApplication.translate("MainWindow", u"Acerca de Qt", None))
+        self.action_redo.setText(QCoreApplication.translate("MainWindow", u"Rehacer", None))
+#if QT_CONFIG(shortcut)
+        self.action_redo.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+Y", None))
+#endif // QT_CONFIG(shortcut)
         self.file.setTitle(QCoreApplication.translate("MainWindow", u"Archivo", None))
         self.edit.setTitle(QCoreApplication.translate("MainWindow", u"Editar", None))
         self.view.setTitle(QCoreApplication.translate("MainWindow", u"Ver", None))

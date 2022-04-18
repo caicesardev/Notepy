@@ -1,6 +1,6 @@
 import sys
 
-from ui.ui_Settings import Ui_Dialog
+from ui.ui_Settings import Ui_SettingsDialog
 from PySide6.QtCore import (
     QLibraryInfo,
     QLocale,
@@ -15,9 +15,9 @@ __version__ = "1.0.0"
 
 
 # MainWindow.
-class Settings(QDialog, Ui_Dialog):
+class SettingsDialog(QDialog, Ui_SettingsDialog):
     def __init__(self):
-        super(Settings, self).__init__()
+        super(SettingsDialog, self).__init__()
 
         self.init_ui()
 
@@ -34,7 +34,7 @@ def main():
                     QLibraryInfo.location(QLibraryInfo.TranslationsPath))
     app.installTranslator(translator)
 
-    gui = Settings()
+    gui = SettingsDialog()
     gui.show()
 
     sys.exit(app.exec())

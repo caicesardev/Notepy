@@ -3,7 +3,8 @@ import os
 import subprocess
 
 from ui.ui_MainWindow import Ui_MainWindow
-from settings import Settings
+from settings import SettingsDialog
+from search import SearchDialog
 from datetime import datetime
 from PySide6.QtGui import QKeySequence
 from PySide6.QtCore import (
@@ -58,13 +59,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.action_print.triggered.connect(self.print_file)
         self.action_exit.triggered.connect(self.close)
 
+        self.action_undo.triggered.connect(self.undo)
+        self.action_redo.triggered.connect(self.redo)
+        self.action_cut.triggered.connect(self.cut)
+        self.action_copy.triggered.connect(self.copy)
+        self.action_paste.triggered.connect(self.paste)
         self.action_search.triggered.connect(self.find)
         self.action_find_next.triggered.connect(self.find_next)
         self.action_find_previous.triggered.connect(self.find_previous)
         self.action_replace.triggered.connect(self.replace)
         self.action_goto.triggered.connect(self.goto)
+        self.action_select_all.triggered.connect(self.select_all)
         self.action_datetime.triggered.connect(self.insert_datetime)
-        self.action_font.triggered.connect(Settings)
+        self.action_font.triggered.connect(SettingsDialog)
 
         self.action_zoom_in.triggered.connect(self.zoom_in)
         self.action_zoom_out.triggered.connect(self.zoom_out)
@@ -72,7 +79,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.action_status_bar.triggered.connect(self.handle_status_bar)
         self.action_word_wrap.triggered.connect(self.handle_word_wrap)
 
-        self.action_settings.triggered.connect(Settings)
+        self.action_settings.triggered.connect(SettingsDialog)
         self.action_about_qt.triggered.connect(QApplication.aboutQt)
 
         self.editor.textChanged.connect(self.on_changes)
@@ -103,15 +110,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.status_bar.addPermanentWidget(self.separator3)
         self.status_bar.addPermanentWidget(self.encoding_label)
 
+        self.search_dialog = None
+
     def on_changes(self):
         # Default name.
         if self.path == '':
             # If the user deleted all changes there's nothing to save.
             if self.editor.textCursor().position() == 0:
-                self.setWindowTitle("Sin Título: Notepy")
+                self.setWindowTitle("Sin título: Notepy")
                 self.file_saved = True
             else:
-                self.setWindowTitle("*Sin Título: Notepy")
+                self.setWindowTitle("*Sin título: Notepy")
                 self.file_saved = False
                 self.cur_location.setText(
                     f"Ln {self.editor.textCursor().blockNumber() + 1}, Col {self.editor.textCursor().columnNumber()}")
@@ -144,7 +153,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.save()
             if ret == QMessageBox.Discard:
                 self.editor.clear()
-                self.setWindowTitle("Sin Título: Notepy")
+                self.setWindowTitle("Sin título: Notepy")
                 self.path = ""
                 self.file_saved = True
                 self.cur_location.setText("Ln 1, Col 1")
@@ -153,7 +162,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 return
         else:
             self.editor.clear()
-            self.setWindowTitle("Sin Título: Notepy")
+            self.setWindowTitle("Sin título: Notepy")
             self.path = ""
             self.file_saved = True
             self.cur_location.setText("Ln 1, Col 1")
@@ -281,8 +290,26 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     #### Edit ####
 
+    def undo(self):
+        self.editor.undo()
+
+    def redo(self):
+        self.editor.redo()
+
+    def cut(self):
+        self.editor.cut()
+
+    def copy(self):
+        self.editor.copy()
+
+    def paste(self):
+        self.editor.paste()
+
     def find(self):
-        pass
+        if self.search_dialog is None:
+            self.search_dialog = SearchDialog(self)
+        self.search_dialog.show()
+        self.search_dialog.activateWindow()
 
     def find_next(self):
         pass
@@ -291,10 +318,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         pass
 
     def replace(self):
-        pass
+        if self.search_dialog is None:
+            self.search_dialog = SearchDialog(self)
+        self.search_dialog.show()
+        self.search_dialog.activateWindow()
 
     def goto(self):
         pass
+
+    def select_all(self):
+        self.editor.selectAll()
 
     def insert_datetime(self):
         cursor = self.editor.textCursor()
