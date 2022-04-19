@@ -36,8 +36,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.file_saved = True  # For the default file.
         self.file_opened = False
         self.path = ''
-        self.default_zoom_level = 100
-        self.zoom_level = 100
+        self.default_zoom_level, self.zoom_level = 100, 100
+        self.max_zoom_level = 500
+        self.min_zoom_level = 10
 
         self.init_ui()
 
@@ -340,22 +341,26 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     #### View ####
 
     def zoom_in(self):
-        self.editor.zoomIn(+5)
-        self.zoom_level += 5
-        self.zoom_percent.setText(f"{self.zoom_level}%")
+        if self.zoom_level < self.max_zoom_level:
+            self.editor.zoomIn(+5)
+            self.zoom_level += 5
+            self.zoom_percent.setText(f"{self.zoom_level}%")
 
     def zoom_out(self):
-        self.editor.zoomOut(+5)
-        self.zoom_level -= 5
-        self.zoom_percent.setText(f"{self.zoom_level}%")
+        if self.zoom_level > self.min_zoom_level:
+            self.editor.zoomOut(+5)
+            self.zoom_level -= 5
+            self.zoom_percent.setText(f"{self.zoom_level}%")
 
     def zoom(self, delta):
         if delta < 0:
-            self.editor.zoomOut(+1)
-            self.zoom_level -= 1
+            if self.zoom_level > self.min_zoom_level:
+                self.editor.zoomOut(+1)
+                self.zoom_level -= 1
         elif delta > 0:
-            self.editor.zoomIn(+1)
-            self.zoom_level += 1
+            if self.zoom_level < self.max_zoom_level:
+                self.editor.zoomIn(+1)
+                self.zoom_level += 1
 
     def wheelEvent(self, event):
         if (event.modifiers() & Qt.ControlModifier):
