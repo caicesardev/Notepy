@@ -25,6 +25,10 @@
   <property name="windowTitle">
    <string>Configuración</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../images.qrc">
+    <normaloff>:/res/images/notes.png</normaloff>:/res/images/notes.png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">QDialog { background: white; }</string>
   </property>
@@ -222,7 +226,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../images.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>button_box</sender>

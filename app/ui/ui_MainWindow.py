@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'MainWindowFsPIrv.ui'
+## Form generated from reading UI file 'MainWindowZoarYy.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.1
 ##
@@ -19,6 +19,7 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
 from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QMainWindow,
     QMenu, QMenuBar, QPlainTextEdit, QSizePolicy,
     QStatusBar, QWidget)
+import images_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -29,6 +30,9 @@ class Ui_MainWindow(object):
         font = QFont()
         font.setFamilies([u"Roboto"])
         MainWindow.setFont(font)
+        icon = QIcon()
+        icon.addFile(u":/res/images/notes.png", QSize(), QIcon.Normal, QIcon.Off)
+        MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet(u"QMainWindow#MainWindow {background: white; }")
         self.action_new = QAction(MainWindow)
         self.action_new.setObjectName(u"action_new")

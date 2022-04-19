@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'SettingsCrmSit.ui'
+## Form generated from reading UI file 'SettingsyNwLZw.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.1
 ##
@@ -19,6 +19,7 @@ from PySide6.QtWidgets import (QAbstractButton, QApplication, QComboBox, QDialog
     QDialogButtonBox, QFontComboBox, QFormLayout, QGroupBox,
     QHBoxLayout, QLabel, QRadioButton, QSizePolicy,
     QVBoxLayout)
+import images_rc
 
 class Ui_SettingsDialog(object):
     def setupUi(self, SettingsDialog):
@@ -27,6 +28,9 @@ class Ui_SettingsDialog(object):
         SettingsDialog.resize(420, 285)
         SettingsDialog.setMinimumSize(QSize(420, 285))
         SettingsDialog.setMaximumSize(QSize(420, 285))
+        icon = QIcon()
+        icon.addFile(u":/res/images/notes.png", QSize(), QIcon.Normal, QIcon.Off)
+        SettingsDialog.setWindowIcon(icon)
         SettingsDialog.setStyleSheet(u"QDialog { background: white; }")
         self.verticalLayout = QVBoxLayout(SettingsDialog)
         self.verticalLayout.setObjectName(u"verticalLayout")
