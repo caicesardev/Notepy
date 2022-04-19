@@ -36,6 +36,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.file_saved = True  # For the default file.
         self.file_opened = False
         self.path = ''
+        self.default_zoom_level = 100
+        self.zoom_level = 100
 
         self.init_ui()
 
@@ -339,22 +341,38 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def zoom_in(self):
         self.editor.zoomIn(+5)
+        self.zoom_level += 5
+        self.zoom_percent.setText(f"{self.zoom_level}%")
 
     def zoom_out(self):
         self.editor.zoomOut(+5)
+        self.zoom_level -= 5
+        self.zoom_percent.setText(f"{self.zoom_level}%")
 
     def zoom(self, delta):
         if delta < 0:
             self.editor.zoomOut(+1)
+            self.zoom_level -= 1
         elif delta > 0:
             self.editor.zoomIn(+1)
+            self.zoom_level += 1
 
     def wheelEvent(self, event):
         if (event.modifiers() & Qt.ControlModifier):
             self.zoom(event.angleDelta().y())
+            self.zoom_percent.setText(f"{self.zoom_level}%")
 
     def restore_zoom(self):
-        pass
+        if self.zoom_level > self.default_zoom_level:
+            zoom_out = self.zoom_level - self.default_zoom_level
+            self.editor.zoomOut(zoom_out)
+            self.zoom_level = 100
+            self.zoom_percent.setText(f"{self.zoom_level}%")
+        if self.zoom_level < self.default_zoom_level:
+            zoom_in = self.default_zoom_level - self.zoom_level
+            self.editor.zoomIn(zoom_in)
+            self.zoom_level = 100
+            self.zoom_percent.setText(f"{self.zoom_level}%")
 
     def handle_status_bar(self):
         if not self.action_status_bar.isChecked():
