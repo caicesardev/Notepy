@@ -8,11 +8,13 @@ from PySide6.QtCore import (
     QLocale,
     QTranslator,
 )
-from PySide6.QtGui import QIcon
+from PySide6.QtGui import QIcon, QTextDocument
 from PySide6.QtWidgets import (
     QApplication,
     QDialog,
     QStyle,
+    QMenu,
+    QMessageBox,
 )
 
 __version__ = "1.0.0"
@@ -26,6 +28,7 @@ class SearchDialog(QDialog, Ui_SearchDialog):
         self.init_ui()
 
         self.parent = parent
+        self.srch_string = ""
 
     # First UI setup.
     def init_ui(self):
@@ -51,11 +54,39 @@ class SearchDialog(QDialog, Ui_SearchDialog):
         self.options_button.setIcon(QIcon(self.options_icon))
         self.close_button.setIcon(QIcon(self.close_icon))
 
+        self.search_edit.returnPressed.connect(self.search_string_backward)
+        self.find_next_button.clicked.connect(self.search_string_forward)
+        self.find_previous_button.clicked.connect(self.search_string_backward)
         self.close_button.clicked.connect(self.close)
 
-    def search_string(self):
-        # --> use self.editor.find(string) or self.parent.editor.find(string) in this case.
-        pass
+        menu = QMenu(self)
+        upper_lower_case_action = menu.addAction(
+            "Coincidir mayúsculas y minúsculas")
+        automatic_adjustement_action = menu.addAction("Ajuste automático")
+        upper_lower_case_action.setCheckable(True)
+        automatic_adjustement_action.setCheckable(True)
+        automatic_adjustement_action.setChecked(True)
+        self.options_button.setMenu(menu)
+
+    def search_string_forward(self):
+        self.srch_string = self.search_edit.text()
+        string = self.parent.editor.find(
+            self.srch_string, QTextDocument.FindWholeWords)
+        if not string:
+            QMessageBox.information(
+                self,
+                "Notepy: No se pudo encontrar",
+                f"No se pudo encontrar '{self.srch_string}'")
+
+    def search_string_backward(self):
+        self.srch_string = self.search_edit.text()
+        string = self.parent.editor.find(
+            self.srch_string, QTextDocument.FindBackward)
+        if not string:
+            QMessageBox.information(
+                self,
+                "Notepy: No se pudo encontrar",
+                f"No se pudo encontrar '{self.srch_string}'")
 
 
 def main():

@@ -90,7 +90,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.encoding_label = QLabel("UTF-8")
         self.os_label = QLabel("Windows (CLRF)")
         # print(repr(f.newlines)) --> To detect if newlines are from windwos \r\f or Unix
-        self.zoom_percent = QLabel("100%")
+        self.zoom_percent = QLabel(f"{self.default_zoom_level}%")
         self.cur_location = QLabel("Ln 1, Col 1")
 
         self.separator = QWidget()
