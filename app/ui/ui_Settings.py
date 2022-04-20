@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'SettingsyNwLZw.ui'
+## Form generated from reading UI file 'SettingsQFHHXf.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.1
 ##
@@ -136,7 +136,7 @@ class Ui_SettingsDialog(object):
 
     def retranslateUi(self, SettingsDialog):
         SettingsDialog.setWindowTitle(QCoreApplication.translate("SettingsDialog", u"Configuraci\u00f3n", None))
-        self.title.setText(QCoreApplication.translate("SettingsDialog", u"<html><head/><body><p><span style=\" font-size:18pt; font-weight:700; color:#000000;\">Configuraci\u00f3n</span></p></body></html>", None))
+        self.title.setText(QCoreApplication.translate("SettingsDialog", u"<html><head/><body><p><span style=\" font-size:14pt; font-weight:700; color:#000000;\">Configuraci\u00f3n</span></p></body></html>", None))
         self.theme_group_box.setTitle(QCoreApplication.translate("SettingsDialog", u"Tema de la aplicaci\u00f3n", None))
         self.light_radio_button.setText(QCoreApplication.translate("SettingsDialog", u"Claro", None))
         self.dark_radio_button.setText(QCoreApplication.translate("SettingsDialog", u"Oscuro", None))
