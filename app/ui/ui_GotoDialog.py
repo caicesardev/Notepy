@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'GotoDialogigdMGm.ui'
+## Form generated from reading UI file 'GotoDialogdMKYNz.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.1
 ##
@@ -19,22 +19,22 @@ from PySide6.QtWidgets import (QApplication, QDialog, QFrame, QHBoxLayout,
     QLabel, QLineEdit, QPushButton, QSizePolicy,
     QVBoxLayout)
 
-class Ui_SearchDialog(object):
-    def setupUi(self, SearchDialog):
-        if not SearchDialog.objectName():
-            SearchDialog.setObjectName(u"SearchDialog")
-        SearchDialog.resize(485, 140)
-        SearchDialog.setMinimumSize(QSize(485, 140))
-        SearchDialog.setMaximumSize(QSize(485, 141))
+class Ui_GotoDialog(object):
+    def setupUi(self, GotoDialog):
+        if not GotoDialog.objectName():
+            GotoDialog.setObjectName(u"GotoDialog")
+        GotoDialog.resize(485, 140)
+        GotoDialog.setMinimumSize(QSize(485, 140))
+        GotoDialog.setMaximumSize(QSize(485, 141))
         font = QFont()
         font.setFamilies([u"Roboto"])
         font.setPointSize(10)
-        SearchDialog.setFont(font)
-        self.verticalLayout = QVBoxLayout(SearchDialog)
+        GotoDialog.setFont(font)
+        self.verticalLayout = QVBoxLayout(GotoDialog)
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.container = QFrame(SearchDialog)
+        self.container = QFrame(GotoDialog)
         self.container.setObjectName(u"container")
         self.container.setStyleSheet(u"QFrame#container { border: 1px solid #cccccc; border-radius: 5px; background: #f2f2f2; }")
         self.verticalLayout_2 = QVBoxLayout(self.container)
@@ -50,13 +50,13 @@ class Ui_SearchDialog(object):
 
         self.verticalLayout_3.addWidget(self.label)
 
-        self.search_edit = QLineEdit(self.top_frame)
-        self.search_edit.setObjectName(u"search_edit")
-        self.search_edit.setMinimumSize(QSize(0, 30))
-        self.search_edit.setFont(font)
-        self.search_edit.setClearButtonEnabled(True)
+        self.goto_edit = QLineEdit(self.top_frame)
+        self.goto_edit.setObjectName(u"goto_edit")
+        self.goto_edit.setMinimumSize(QSize(0, 30))
+        self.goto_edit.setFont(font)
+        self.goto_edit.setClearButtonEnabled(True)
 
-        self.verticalLayout_3.addWidget(self.search_edit)
+        self.verticalLayout_3.addWidget(self.goto_edit)
 
 
         self.verticalLayout_2.addWidget(self.top_frame)
@@ -88,16 +88,16 @@ class Ui_SearchDialog(object):
         self.verticalLayout.addWidget(self.container)
 
 
-        self.retranslateUi(SearchDialog)
+        self.retranslateUi(GotoDialog)
 
-        QMetaObject.connectSlotsByName(SearchDialog)
+        QMetaObject.connectSlotsByName(GotoDialog)
     # setupUi
 
-    def retranslateUi(self, SearchDialog):
-        SearchDialog.setWindowTitle(QCoreApplication.translate("SearchDialog", u"Notepy: Ir a la l\u00ednea", None))
-        self.label.setText(QCoreApplication.translate("SearchDialog", u"N\u00famero de l\u00ednea", None))
-        self.search_edit.setPlaceholderText(QCoreApplication.translate("SearchDialog", u"1234", None))
-        self.goto_button.setText(QCoreApplication.translate("SearchDialog", u"Ir a", None))
-        self.cancel_button.setText(QCoreApplication.translate("SearchDialog", u"Cancelar", None))
+    def retranslateUi(self, GotoDialog):
+        GotoDialog.setWindowTitle(QCoreApplication.translate("GotoDialog", u"Notepy: Ir a la l\u00ednea", None))
+        self.label.setText(QCoreApplication.translate("GotoDialog", u"N\u00famero de l\u00ednea", None))
+        self.goto_edit.setPlaceholderText(QCoreApplication.translate("GotoDialog", u"1234", None))
+        self.goto_button.setText(QCoreApplication.translate("GotoDialog", u"Ir a", None))
+        self.cancel_button.setText(QCoreApplication.translate("GotoDialog", u"Cancelar", None))
     # retranslateUi
 

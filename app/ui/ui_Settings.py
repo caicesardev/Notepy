@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'SettingsQFHHXf.ui'
+## Form generated from reading UI file 'SettingsCWqSqs.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.1
 ##
@@ -15,10 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractButton, QApplication, QComboBox, QDialog,
-    QDialogButtonBox, QFontComboBox, QFormLayout, QGroupBox,
-    QHBoxLayout, QLabel, QRadioButton, QSizePolicy,
-    QVBoxLayout)
+from PySide6.QtWidgets import (QApplication, QComboBox, QDialog, QFontComboBox,
+    QFormLayout, QFrame, QGroupBox, QHBoxLayout,
+    QLabel, QPushButton, QRadioButton, QSizePolicy,
+    QSpacerItem, QVBoxLayout)
 import images_rc
 
 class Ui_SettingsDialog(object):
@@ -119,17 +119,34 @@ class Ui_SettingsDialog(object):
 
         self.verticalLayout.addWidget(self.font_group_box)
 
-        self.button_box = QDialogButtonBox(SettingsDialog)
-        self.button_box.setObjectName(u"button_box")
-        self.button_box.setOrientation(Qt.Horizontal)
-        self.button_box.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
+        self.frame = QFrame(SettingsDialog)
+        self.frame.setObjectName(u"frame")
+        self.frame.setFrameShape(QFrame.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_2 = QHBoxLayout(self.frame)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.verticalLayout.addWidget(self.button_box)
+        self.horizontalLayout_2.addItem(self.horizontalSpacer)
+
+        self.accept_button = QPushButton(self.frame)
+        self.accept_button.setObjectName(u"accept_button")
+        self.accept_button.setMinimumSize(QSize(0, 30))
+
+        self.horizontalLayout_2.addWidget(self.accept_button)
+
+        self.cancel_button = QPushButton(self.frame)
+        self.cancel_button.setObjectName(u"cancel_button")
+        self.cancel_button.setMinimumSize(QSize(0, 30))
+
+        self.horizontalLayout_2.addWidget(self.cancel_button)
+
+
+        self.verticalLayout.addWidget(self.frame)
 
 
         self.retranslateUi(SettingsDialog)
-        self.button_box.accepted.connect(SettingsDialog.accept)
-        self.button_box.rejected.connect(SettingsDialog.reject)
 
         QMetaObject.connectSlotsByName(SettingsDialog)
     # setupUi
@@ -164,5 +181,7 @@ class Ui_SettingsDialog(object):
         self.size_combo_box.setItemText(14, QCoreApplication.translate("SettingsDialog", u"48", None))
         self.size_combo_box.setItemText(15, QCoreApplication.translate("SettingsDialog", u"72", None))
 
+        self.accept_button.setText(QCoreApplication.translate("SettingsDialog", u"Aceptar", None))
+        self.cancel_button.setText(QCoreApplication.translate("SettingsDialog", u"Cancelar", None))
     # retranslateUi
 

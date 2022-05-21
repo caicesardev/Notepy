@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SearchDialog</class>
- <widget class="QDialog" name="SearchDialog">
+ <class>GotoDialog</class>
+ <widget class="QDialog" name="GotoDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -70,7 +70,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="search_edit">
+          <widget class="QLineEdit" name="goto_edit">
            <property name="minimumSize">
             <size>
              <width>0</width>

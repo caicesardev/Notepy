@@ -5,6 +5,7 @@ import subprocess
 from ui.ui_MainWindow import Ui_MainWindow
 from settings import SettingsDialog
 from search import SearchDialog
+from goto import GotoDialog
 from datetime import datetime
 from PySide6.QtGui import QKeySequence
 from PySide6.QtCore import (
@@ -12,11 +13,13 @@ from PySide6.QtCore import (
     QLibraryInfo,
     QLocale,
     QTranslator,
+    QSize,
+    QPoint,
+    QSettings,
 )
 from PySide6.QtWidgets import (
     QApplication,
     QMainWindow,
-    QTextEdit,
     QFileDialog,
     QMessageBox,
     QLabel,
@@ -41,6 +44,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.min_zoom_level = 10
 
         self.init_ui()
+
+        self.get_settings()
+        self.set_settings()
 
         self.setWindowTitle("Sin título: Notepy")
 
@@ -74,7 +80,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.action_goto.triggered.connect(self.goto)
         self.action_select_all.triggered.connect(self.select_all)
         self.action_datetime.triggered.connect(self.insert_datetime)
-        self.action_font.triggered.connect(SettingsDialog)
+        self.action_font.triggered.connect(self.open_settings_dialog)
 
         self.action_zoom_in.triggered.connect(self.zoom_in)
         self.action_zoom_out.triggered.connect(self.zoom_out)
@@ -82,7 +88,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.action_status_bar.triggered.connect(self.handle_status_bar)
         self.action_word_wrap.triggered.connect(self.handle_word_wrap)
 
-        self.action_settings.triggered.connect(SettingsDialog)
+        self.action_settings.triggered.connect(self.open_settings_dialog)
         self.action_about_qt.triggered.connect(QApplication.aboutQt)
 
         self.editor.textChanged.connect(self.on_changes)
@@ -114,6 +120,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.status_bar.addPermanentWidget(self.encoding_label)
 
         self.search_dialog = None
+        self.goto_dialog = None
 
     def on_changes(self):
         # Default name.
@@ -264,10 +271,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if dialog.exec() == QPrintDialog.Accepted:
             self.editor.print_(printer)
 
-    def closeEvent(self, event):
-        if self.file_saved == False:
-            self.show_save_message(event)
-
     def show_save_message(self, event):
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Information)
@@ -327,7 +330,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.search_dialog.activateWindow()
 
     def goto(self):
-        pass
+        if self.goto_dialog is None:
+            self.goto_dialog = GotoDialog(self)
+        self.goto_dialog.show()
+        self.goto_dialog.activateWindow()
 
     def select_all(self):
         self.editor.selectAll()
@@ -392,6 +398,31 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.editor.setLineWrapMode(self.editor.WidgetWidth)
 
     #### View ####
+
+    #### App ####
+
+    def open_settings_dialog(self):
+        SettingsDialog(self)
+
+    def get_settings(self):
+        self.w_attrib = QSettings("Notepy", "WindowAttributes")
+
+    def set_settings(self):
+        # Initial window size/pos last saved. Use default values for first time.
+        self.resize(self.w_attrib.value("size", QSize(720, 480)))
+        self.move(self.w_attrib.value("pos", QPoint(50, 50)))
+        if self.w_attrib.value("maximized") == "true":
+            self.showMaximized()
+
+    def closeEvent(self, event):
+        if self.file_saved == False:
+            self.show_save_message(event)
+        # Remember window postion and size on exit.
+        self.w_attrib.setValue("size", self.size())
+        self.w_attrib.setValue("pos", self.pos())
+        self.w_attrib.setValue("maximized", self.isMaximized())
+
+    #### App ####
 
 
 def main():
