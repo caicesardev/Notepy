@@ -25,7 +25,11 @@ from PySide6.QtWidgets import (
     QLabel,
     QWidget,
 )
-from PySide6.QtPrintSupport import QPrinter, QPrintDialog, QPageSetupDialog
+from PySide6.QtPrintSupport import (
+    QPrinter,
+    QPrintDialog,
+    QPageSetupDialog
+)
 
 
 __version__ = "1.0.0"
@@ -439,4 +443,5 @@ def main():
 
 
 if __name__ == "__main__":
+    print(f"Notepy: {__version__}")
     main()

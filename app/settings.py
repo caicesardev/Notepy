@@ -64,7 +64,7 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
         self.app_settings.setValue(
             "sys-theme", self.system_radio_button.isChecked())
         self.app_settings.setValue(
-            "font-family", self.family_combo_box.currentFont())
+            "font-family", self.family_combo_box.currentText())
         self.app_settings.setValue(
             "style", self.style_combo_box.currentText())
         self.app_settings.setValue(
@@ -74,7 +74,7 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
 
     def apply_settings(self):
         self.font = QFont()
-        self.font.setFamily(str(self.app_settings.value("font-family")))
+        self.font.setFamily(self.app_settings.value("font-family"))
         self.font.setPointSize(int(self.app_settings.value("font-size")))
         self.parent.editor.setFont(self.font)
 
