@@ -78,6 +78,44 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
         self.font.setPointSize(int(self.app_settings.value("font-size")))
         self.parent.editor.setFont(self.font)
 
+        if self.app_settings.value("light-theme") == "true":
+            pass
+        elif self.app_settings.value("dark-theme") == "true":
+            self.parent.setStyleSheet(
+                """
+            
+            QMenuBar#menubar {
+                background: #202020;
+                color: white;
+            }
+
+            QMenuBar::item::selected#menubar{
+                background: #2d2d2d;
+            }
+
+            QMenuBar::item::pressed#menubar{
+                color: #d8d8d8;
+            }
+            
+            QMainWindow#MainWindow {
+                background: #272727;
+            }             
+
+            QPlainTextEdit#editor {
+                background: #272727;
+                color: white;
+            }
+
+            QStatusBar#status_bar {
+                background: #1f1f1f;
+                color: white;
+            }
+
+            """
+            )
+        else:
+            pass
+
 
 def main():
     app = QApplication(sys.argv)

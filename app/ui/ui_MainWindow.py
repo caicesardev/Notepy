@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'MainWindowZoarYy.ui'
+## Form generated from reading UI file 'MainWindowXHcmyl.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.2.1
 ##
@@ -137,7 +137,6 @@ class Ui_MainWindow(object):
         MainWindow.setMenuBar(self.menubar)
         self.status_bar = QStatusBar(MainWindow)
         self.status_bar.setObjectName(u"status_bar")
-        self.status_bar.setStyleSheet(u"QStatusBar { background: #cccccc; }")
         MainWindow.setStatusBar(self.status_bar)
 
         self.menubar.addAction(self.file.menuAction())
