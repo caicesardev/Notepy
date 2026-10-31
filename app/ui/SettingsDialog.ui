@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SettingsDialog</class>
+ <widget class="QDialog" name="SettingsDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>440</width>
+    <height>360</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Configuración</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../images.qrc">
+    <normaloff>:/icons/notes.png</normaloff>:/icons/notes.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="dialog_layout">
+   <item>
+    <widget class="QGroupBox" name="theme_group">
+     <property name="title">
+      <string>Tema de la aplicación</string>
+     </property>
+     <layout class="QHBoxLayout" name="theme_layout">
+      <item>
+       <widget class="QRadioButton" name="light_theme_radio">
+        <property name="text">
+         <string>&amp;Claro</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="dark_theme_radio">
+        <property name="text">
+         <string>&amp;Oscuro</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="system_theme_radio">
+        <property name="text">
+         <string>Usar la configuración del &amp;sistema</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="font_group">
+     <property name="title">
+      <string>Fuente</string>
+     </property>
+     <layout class="QFormLayout" name="font_layout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="family_label">
+        <property name="text">
+         <string>&amp;Familia</string>
+        </property>
+        <property name="buddy">
+         <cstring>family_combo</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QFontComboBox" name="family_combo"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="style_label">
+        <property name="text">
+         <string>&amp;Estilo</string>
+        </property>
+        <property name="buddy">
+         <cstring>style_combo</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="style_combo"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="size_label">
+        <property name="text">
+         <string>&amp;Tamaño</string>
+        </property>
+        <property name="buddy">
+         <cstring>size_spin</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QSpinBox" name="size_spin">
+        <property name="minimum">
+         <number>6</number>
+        </property>
+        <property name="maximum">
+         <number>96</number>
+        </property>
+        <property name="value">
+         <number>11</number>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="2">
+       <widget class="QLabel" name="preview_label">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>70</height>
+         </size>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Shape::StyledPanel</enum>
+        </property>
+        <property name="text">
+         <string>AaBbYyZz ÁÉÍÓÚ ñ 0123</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="button_box">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../images.qrc"/>
+ </resources>
+ <connections/>
+</ui>
