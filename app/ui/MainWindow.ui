@@ -7,91 +7,78 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>620</height>
+    <height>600</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>250</width>
-    <height>125</height>
+    <width>320</width>
+    <height>200</height>
    </size>
-  </property>
-  <property name="font">
-   <font>
-    <family>Roboto</family>
-   </font>
   </property>
   <property name="windowTitle">
    <string>Notepy</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../images.qrc">
-    <normaloff>:/res/images/notes.png</normaloff>:/res/images/notes.png</iconset>
+    <normaloff>:/icons/notes.png</normaloff>:/icons/notes.png</iconset>
   </property>
-  <property name="styleSheet">
-   <string notr="true">QMainWindow#MainWindow {background: white; }</string>
-  </property>
-  <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout">
+  <widget class="QWidget" name="central_widget">
+   <layout class="QVBoxLayout" name="central_layout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
     <property name="bottomMargin">
      <number>0</number>
     </property>
-    <item row="0" column="0">
-     <widget class="QPlainTextEdit" name="editor">
-      <property name="font">
-       <font>
-        <family>Roboto</family>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
+    <item>
+     <widget class="TextEditor" name="editor">
       <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
+       <enum>QFrame::Shape::NoFrame</enum>
       </property>
-      <property name="lineWrapMode">
-       <enum>QPlainTextEdit::NoWrap</enum>
+      <property name="tabChangesFocus">
+       <bool>false</bool>
       </property>
      </widget>
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-   <widget class="QMenu" name="file">
-    <property name="tearOffEnabled">
-     <bool>true</bool>
-    </property>
+  <widget class="QMenuBar" name="menu_bar">
+   <widget class="QMenu" name="file_menu">
     <property name="title">
-     <string>Archivo</string>
+     <string>&amp;Archivo</string>
     </property>
+    <widget class="QMenu" name="recent_files_menu">
+     <property name="title">
+      <string>Archivos &amp;recientes</string>
+     </property>
+    </widget>
     <addaction name="action_new"/>
     <addaction name="action_new_window"/>
     <addaction name="action_open"/>
+    <addaction name="recent_files_menu"/>
     <addaction name="action_save"/>
     <addaction name="action_save_as"/>
     <addaction name="separator"/>
-    <addaction name="action_page_settings"/>
+    <addaction name="action_page_setup"/>
     <addaction name="action_print"/>
+    <addaction name="separator"/>
+    <addaction name="action_settings"/>
     <addaction name="separator"/>
     <addaction name="action_exit"/>
    </widget>
-   <widget class="QMenu" name="edit">
-    <property name="tearOffEnabled">
-     <bool>true</bool>
-    </property>
+   <widget class="QMenu" name="edit_menu">
     <property name="title">
-     <string>Editar</string>
+     <string>&amp;Editar</string>
     </property>
     <addaction name="action_undo"/>
     <addaction name="action_redo"/>
@@ -99,57 +86,51 @@
     <addaction name="action_cut"/>
     <addaction name="action_copy"/>
     <addaction name="action_paste"/>
+    <addaction name="action_delete"/>
     <addaction name="separator"/>
-    <addaction name="action_search"/>
+    <addaction name="action_find"/>
     <addaction name="action_find_next"/>
     <addaction name="action_find_previous"/>
     <addaction name="action_replace"/>
-    <addaction name="action_goto"/>
+    <addaction name="action_go_to_line"/>
     <addaction name="separator"/>
     <addaction name="action_select_all"/>
-    <addaction name="action_datetime"/>
+    <addaction name="action_insert_date_time"/>
     <addaction name="separator"/>
     <addaction name="action_font"/>
    </widget>
-   <widget class="QMenu" name="view">
-    <property name="tearOffEnabled">
-     <bool>true</bool>
-    </property>
+   <widget class="QMenu" name="view_menu">
     <property name="title">
-     <string>Ver</string>
+     <string>&amp;Ver</string>
     </property>
-    <widget class="QMenu" name="menuZoom">
-     <property name="tearOffEnabled">
-      <bool>true</bool>
-     </property>
+    <widget class="QMenu" name="zoom_menu">
      <property name="title">
-      <string>Zoom</string>
+      <string>&amp;Zoom</string>
      </property>
      <addaction name="action_zoom_in"/>
      <addaction name="action_zoom_out"/>
-     <addaction name="action_restore_zoom"/>
+     <addaction name="action_reset_zoom"/>
     </widget>
-    <addaction name="menuZoom"/>
+    <addaction name="zoom_menu"/>
     <addaction name="action_status_bar"/>
     <addaction name="action_word_wrap"/>
    </widget>
-   <widget class="QMenu" name="help">
+   <widget class="QMenu" name="help_menu">
     <property name="title">
-     <string>Ayuda</string>
+     <string>A&amp;yuda</string>
     </property>
-    <addaction name="action_settings"/>
     <addaction name="action_about"/>
     <addaction name="action_about_qt"/>
    </widget>
-   <addaction name="file"/>
-   <addaction name="edit"/>
-   <addaction name="view"/>
-   <addaction name="help"/>
+   <addaction name="file_menu"/>
+   <addaction name="edit_menu"/>
+   <addaction name="view_menu"/>
+   <addaction name="help_menu"/>
   </widget>
-  <widget class="QStatusBar" name="status_bar"/>
+  <widget class="DocumentStatusBar" name="status_bar"/>
   <action name="action_new">
    <property name="text">
-    <string>Nuevo</string>
+    <string>&amp;Nuevo</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
@@ -157,7 +138,7 @@
   </action>
   <action name="action_new_window">
    <property name="text">
-    <string>Nueva ventana</string>
+    <string>Nueva &amp;ventana</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+N</string>
@@ -165,7 +146,7 @@
   </action>
   <action name="action_open">
    <property name="text">
-    <string>Abrir</string>
+    <string>&amp;Abrir...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -173,7 +154,7 @@
   </action>
   <action name="action_save">
    <property name="text">
-    <string>Guardar</string>
+    <string>&amp;Guardar</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -181,28 +162,36 @@
   </action>
   <action name="action_save_as">
    <property name="text">
-    <string>Guardar como</string>
+    <string>Guardar &amp;como...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+S</string>
    </property>
   </action>
-  <action name="action_page_settings">
+  <action name="action_page_setup">
    <property name="text">
-    <string>Configurar página</string>
+    <string>Configurar &amp;página...</string>
    </property>
   </action>
   <action name="action_print">
    <property name="text">
-    <string>Imprimir</string>
+    <string>&amp;Imprimir...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
    </property>
   </action>
+  <action name="action_settings">
+   <property name="text">
+    <string>Con&amp;figuración...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+,</string>
+   </property>
+  </action>
   <action name="action_exit">
    <property name="text">
-    <string>Salir</string>
+    <string>&amp;Salir</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+W</string>
@@ -210,15 +199,23 @@
   </action>
   <action name="action_undo">
    <property name="text">
-    <string>Deshacer</string>
+    <string>&amp;Deshacer</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Z</string>
    </property>
   </action>
+  <action name="action_redo">
+   <property name="text">
+    <string>&amp;Rehacer</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Y</string>
+   </property>
+  </action>
   <action name="action_cut">
    <property name="text">
-    <string>Cortar</string>
+    <string>Cor&amp;tar</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+X</string>
@@ -226,7 +223,7 @@
   </action>
   <action name="action_copy">
    <property name="text">
-    <string>Copiar</string>
+    <string>&amp;Copiar</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+C</string>
@@ -234,7 +231,7 @@
   </action>
   <action name="action_paste">
    <property name="text">
-    <string>Pegar</string>
+    <string>&amp;Pegar</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+V</string>
@@ -242,23 +239,23 @@
   </action>
   <action name="action_delete">
    <property name="text">
-    <string>Eliminar</string>
+    <string>&amp;Eliminar</string>
    </property>
    <property name="shortcut">
     <string>Del</string>
    </property>
   </action>
-  <action name="action_search">
+  <action name="action_find">
    <property name="text">
-    <string>Buscar</string>
+    <string>&amp;Buscar...</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+B</string>
+    <string>Ctrl+F</string>
    </property>
   </action>
   <action name="action_find_next">
    <property name="text">
-    <string>Buscar siguiente</string>
+    <string>Buscar &amp;siguiente</string>
    </property>
    <property name="shortcut">
     <string>F3</string>
@@ -266,7 +263,7 @@
   </action>
   <action name="action_find_previous">
    <property name="text">
-    <string>Buscar anterior</string>
+    <string>Buscar &amp;anterior</string>
    </property>
    <property name="shortcut">
     <string>Shift+F3</string>
@@ -274,31 +271,31 @@
   </action>
   <action name="action_replace">
    <property name="text">
-    <string>Reemplazar</string>
+    <string>Reem&amp;plazar...</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+R</string>
+    <string>Ctrl+H</string>
    </property>
   </action>
-  <action name="action_goto">
+  <action name="action_go_to_line">
    <property name="text">
-    <string>Ir a</string>
+    <string>&amp;Ir a...</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+T</string>
+    <string>Ctrl+G</string>
    </property>
   </action>
   <action name="action_select_all">
    <property name="text">
-    <string>Seleccionar todo</string>
+    <string>Seleccionar &amp;todo</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+E</string>
+    <string>Ctrl+A</string>
    </property>
   </action>
-  <action name="action_datetime">
+  <action name="action_insert_date_time">
    <property name="text">
-    <string>Fecha y hora</string>
+    <string>&amp;Hora y fecha</string>
    </property>
    <property name="shortcut">
     <string>F5</string>
@@ -306,25 +303,7 @@
   </action>
   <action name="action_font">
    <property name="text">
-    <string>Fuente</string>
-   </property>
-  </action>
-  <action name="action_zoom_in">
-   <property name="text">
-    <string>Acercar</string>
-   </property>
-  </action>
-  <action name="action_zoom_out">
-   <property name="text">
-    <string>Alejar</string>
-   </property>
-  </action>
-  <action name="action_restore_zoom">
-   <property name="text">
-    <string>Restaurar zoom predeterminado</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+0</string>
+    <string>&amp;Fuente...</string>
    </property>
   </action>
   <action name="action_status_bar">
@@ -335,41 +314,67 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Barra de estado</string>
+    <string>&amp;Barra de estado</string>
    </property>
   </action>
   <action name="action_word_wrap">
    <property name="checkable">
     <bool>true</bool>
    </property>
-   <property name="text">
-    <string>Ajuste de línea</string>
+   <property name="checked">
+    <bool>true</bool>
    </property>
-  </action>
-  <action name="action_settings">
    <property name="text">
-    <string>Configuración</string>
+    <string>&amp;Ajuste de línea</string>
    </property>
   </action>
   <action name="action_about">
    <property name="text">
-    <string>Acerca de</string>
+    <string>&amp;Acerca de Notepy</string>
    </property>
   </action>
   <action name="action_about_qt">
    <property name="text">
-    <string>Acerca de Qt</string>
+    <string>Acerca de &amp;Qt</string>
    </property>
   </action>
-  <action name="action_redo">
+  <action name="action_zoom_in">
    <property name="text">
-    <string>Rehacer</string>
+    <string>&amp;Acercar</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Y</string>
+    <string>Ctrl++</string>
+   </property>
+  </action>
+  <action name="action_zoom_out">
+   <property name="text">
+    <string>A&amp;lejar</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+-</string>
+   </property>
+  </action>
+  <action name="action_reset_zoom">
+   <property name="text">
+    <string>&amp;Restaurar zoom predeterminado</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+0</string>
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TextEditor</class>
+   <extends>QPlainTextEdit</extends>
+   <header>src/widgets/text_editor.h</header>
+  </customwidget>
+  <customwidget>
+   <class>DocumentStatusBar</class>
+   <extends>QStatusBar</extends>
+   <header>src/widgets/document_status_bar.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../images.qrc"/>
  </resources>
